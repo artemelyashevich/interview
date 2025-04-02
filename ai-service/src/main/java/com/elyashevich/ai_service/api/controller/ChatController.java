@@ -1,4 +1,4 @@
-package com.elyashevich.ai_service;
+package com.elyashevich.ai_service.api.controller;
 
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatResponse;

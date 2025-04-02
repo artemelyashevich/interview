@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: user-service
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    username: admin
+    password: admin
+    url: jdbc:mysql://localhost:3306/interview
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  data:
+    redis:
+      port: 6379
+      host: localhost
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    enabled: true
+server:
+  port: 0

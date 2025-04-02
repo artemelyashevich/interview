@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: artem-elyashevich
+      changes:
+        - createTable:
+            tableName: candidate_skills
+            columns:
+              - column:
+                  name: profile_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_skills_profile
+                    references: candidate_profile(id)
+              - column:
+                  name: skill
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
