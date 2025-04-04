@@ -112,6 +112,10 @@ public class UserServiceImpl implements UserService {
         var oldUser = this.objectFactory.getObject().findById(id);
         oldUser.setEmail(user.getEmail());
 
+        if (user.getRole() != null) {
+            oldUser.setRole(user.getRole());
+        }
+
         var updatedUser = this.userRepository.save(oldUser);
 
         log.info("User updated: {}", updatedUser);

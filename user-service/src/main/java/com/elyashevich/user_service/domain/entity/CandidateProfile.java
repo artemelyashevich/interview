@@ -4,6 +4,8 @@ import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -39,8 +41,9 @@ public class CandidateProfile {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(length = 50)
-    private String experienceLevel;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "experience_level", length = 50, nullable = false)
+    private ExperienceLevel experienceLevel;
 
     @Column(name = "preferred_interview_types", length = 255)
     private String preferredInterviewTypes;
