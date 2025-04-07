@@ -6,6 +6,6 @@ public enum UserRole {
     ADMIN("Admin"),
     GUEST("Guest");
 
-    UserRole(String role){
+    UserRole(String role) {
     }
 }

@@ -30,4 +30,13 @@ public class UserMapperImpl implements UserMapper {
             .password(userRequestDto.password())
             .build();
     }
+
+    @Override
+    public User toUser(UserResponseDto userResponseDto) {
+        return User.builder()
+            .id(userResponseDto.id())
+            .email(userResponseDto.email())
+            .role(userResponseDto.role())
+            .build();
+    }
 }

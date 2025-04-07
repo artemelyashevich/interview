@@ -33,7 +33,7 @@ public class CandidateProfileServiceImpl implements CandidateProfileService {
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable(value="CandidateProfileService::findAll")
+    @Cacheable(value = "CandidateProfileService::findAll")
     public Page<CandidateProfile> findAll(int page, int size) {
         log.debug("Attempting to find all profiles");
 
@@ -48,7 +48,7 @@ public class CandidateProfileServiceImpl implements CandidateProfileService {
     @Override
     @Caching(
         put = {
-            @CachePut(value = "CandidateProfileService::findById", key="#result.id"),
+            @CachePut(value = "CandidateProfileService::findById", key = "#result.id"),
             @CachePut(value = "CandidateProfileService::findByEmail", key = "#result.user.email"),
             @CachePut(value = "CandidateProfileService::findAll")
         }
@@ -61,8 +61,8 @@ public class CandidateProfileServiceImpl implements CandidateProfileService {
         user.setRole(UserRole.CANDIDATE);
         this.userService.update(userId, user);
         var candidate = this.candidateProfileRepository.save(CandidateProfile.builder()
-                .experienceLevel(ExperienceLevel.LOW)
-                .user(user)
+            .experienceLevel(ExperienceLevel.LOW)
+            .user(user)
             .build());
 
         log.info("User with id '{}' has been activated", userId);
@@ -72,7 +72,7 @@ public class CandidateProfileServiceImpl implements CandidateProfileService {
     @Override
     public CandidateProfile findById(Long id) {
         log.debug("Attempting to find profile with id {}", id);
-        
+
         var candidateProfile = this.candidateProfileRepository.findById(id).orElseThrow(
             () -> {
                 var message = CANDIDATE_WITH_ID_WAS_NOT_FOUND_TEMPLATE.formatted(id);
@@ -80,7 +80,7 @@ public class CandidateProfileServiceImpl implements CandidateProfileService {
                 return new ResourceNotFoundException(message);
             }
         );
-        
+
         log.info("Candidate with id '{}' found", id);
         return candidateProfile;
     }
@@ -88,7 +88,7 @@ public class CandidateProfileServiceImpl implements CandidateProfileService {
     @Override
     public CandidateProfile findByEmail(String email) {
         log.debug("Attempting to find profile with email {}", email);
-        
+
         var candidateProfile = this.candidateProfileRepository.findByUserEmail(email).orElseThrow(
             () -> {
                 var message = CANDIDATE_WITH_EMAIL_WAS_NOT_FOUND_TEMPLATE.formatted(email);
@@ -96,7 +96,7 @@ public class CandidateProfileServiceImpl implements CandidateProfileService {
                 return new ResourceNotFoundException(message);
             }
         );
-        
+
         log.info("Candidate with email '{}' found", email);
         return candidateProfile;
     }

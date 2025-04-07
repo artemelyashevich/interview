@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable(value="UserService::findAll")
+    @Cacheable(value = "UserService::findAll")
     public Page<User> findAll(Integer page, Integer size) {
         log.debug("Attempting to find all users");
 
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Caching(
         put = {
-            @CachePut(value = "UserService::findById", key="#result.id"),
+            @CachePut(value = "UserService::findById", key = "#result.id"),
             @CachePut(value = "UserService::findByEmail", key = "#result.email"),
             @CachePut(value = "UserService::findAll")
         }
@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Caching(
         put = {
-            @CachePut(value = "UserService::findById", key="#result.id"),
+            @CachePut(value = "UserService::findById", key = "#result.id"),
             @CachePut(value = "UserService::findByEmail", key = "#result.email"),
             @CachePut(value = "UserService::findAll")
         }
@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    @CacheEvict(value = "UserService::findById", key="#id")
+    @CacheEvict(value = "UserService::findById", key = "#id")
     public void delete(Long id) {
         log.debug("Attempting to delete user by id");
 

@@ -33,7 +33,7 @@ public class UserController {
         @RequestParam(defaultValue = "5", required = false) int size
     ) {
         var users = userService.findAll(page, size);
-        return users.get().map(this.userMapper::toDto).toList();
+        return this.userMapper.toDto(users.getContent());
     }
 
     @GetMapping("/{id}")

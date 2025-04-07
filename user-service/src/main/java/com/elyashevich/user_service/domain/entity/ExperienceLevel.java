@@ -6,5 +6,6 @@ public enum ExperienceLevel {
     MEDIUM("Medium"),
     HIGH("High");
 
-    ExperienceLevel(String name){}
+    ExperienceLevel(String name) {
+    }
 }
